@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pi Square Tech Solutions — software engineering, architecture and digital solutions." />
+  <title>Pi Square Tech Solutions | Software Engineering</title>
+
+  <style>
+    :root {
+      --bg: #070b12;
+      --surface: #0d1420;
+      --surface-2: #111b29;
+      --text: #f5f7fb;
+      --muted: #9ba8ba;
+      /*--accent: #ff4b16;*/
+      --accent: #F32B01;
+      --accent-2: #ff4b16;
+      --border: rgba(255,255,255,.09);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(255,75,22,.12), transparent 28%),
+        radial-gradient(circle at 10% 25%, rgba(255,75,22,.06), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: 0 auto;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(7,11,18,.78);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+    }
+
+    .brand img {
+      /* width: 48px; */
+      height: 58px;
+      object-fit: contain;
+      /* border-radius: 5px; */
+      /* background: #fff; */
+    }
+
+    .brand-mark {
+      display: none;
+      font-size: 22px;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .brand span { font-size: 15px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      padding: 10px 16px;
+      background: var(--accent);
+      color: #fff !important;
+      border-radius: 9px;
+      font-weight: 800;
+    }
+
+    .hero {
+      padding: 110px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent-2);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(44px, 6vw, 78px);
+      line-height: .98;
+      letter-spacing: -.06em;
+      max-width: 850px;
+    }
+
+    h1 span { color: var(--accent); }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 26px 0 32px;
+      font-size: 18px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 9px;
+      border: 1px solid var(--border);
+      font-weight: 800;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .hero-card {
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: 0 25px 80px rgba(0,0,0,.25);
+    }
+
+    .hero-card .symbol {
+      font-size: 88px;
+      color: var(--accent);
+      font-weight: 900;
+      line-height: .9;
+      margin-bottom: 28px;
+    }
+
+    .hero-card h3 { font-size: 24px; margin-bottom: 10px; }
+    .hero-card p { margin: 0; font-size: 15px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 26px 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; font-size: 30px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    section { padding: 95px 0; }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(32px, 4vw, 50px);
+      letter-spacing: -.045em;
+      line-height: 1;
+    }
+
+    .section-heading p {
+      max-width: 500px;
+      color: var(--muted);
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      position: relative;
+      min-height: 270px;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.055), rgba(255,255,255,.015));
+      overflow: hidden;
+      transition: .25s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,75,22,.45);
+    }
+
+    .project-number {
+      color: rgba(255,255,255,.22);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .15em;
+    }
+
+    .project h3 {
+      margin: 34px 0 8px;
+      font-size: 25px;
+      letter-spacing: -.03em;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 500px;
+      margin-bottom: 24px;
+    }
+
+    .project-link {
+      display: inline-flex;
+      gap: 8px;
+      color: var(--accent-2);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .project-link:hover { text-decoration: underline; }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .service {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: var(--surface);
+    }
+
+    .service-icon {
+      color: var(--accent);
+      font-size: 25px;
+      margin-bottom: 18px;
+    }
+
+    .service h3 { font-size: 17px; margin-bottom: 7px; }
+    .service p { color: var(--muted); font-size: 13px; }
+
+    .contact {
+      padding: 50px;
+      border-radius: 25px;
+      border: 1px solid rgba(255,75,22,.25);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(255,75,22,.18), transparent 35%),
+        var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .contact h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      letter-spacing: -.05em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .contact p { color: var(--muted); }
+
+    .contact-details {
+      display: grid;
+      gap: 10px;
+      font-weight: 700;
+    }
+
+    .contact-details a:hover { color: var(--accent-2); }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .services { grid-template-columns: repeat(2, 1fr); }
+      .projects { grid-template-columns: 1fr; }
+      .contact { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { padding-top: 75px; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: 0; }
+      .services { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 16px; }
+      .contact { padding: 30px; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <img src="assets/logo.png" alt="Pi Square Tech Solutions logo" />
+        <!-- <span>Pi Square Tech Solutions</span> -->
+      </a>
+
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a class="nav-cta" href="#contact">Let's Talk</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Software Engineering & Architecture</div>
+          <h1>We <span>build</span> software that works in the real world.</h1>
+          <p>
+            Pi Square Tech Solutions designs and engineers modern digital products,
+            business platforms and software systems with a focus on clean architecture,
+            reliability, scalability and practical results.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#work">View Our Work</a>
+            <a class="btn" href="mailto:pisquaretechsolutions@gmail.com">Start a Project</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="symbol">π²</div>
+          <h3>Build. Scale. Automate.</h3>
+          <p>
+            From websites and business platforms to SaaS products, APIs,
+            integrations and custom software systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div class="stats">
+        <div class="stat"><strong>07</strong><span>Selected Projects</span></div>
+        <div class="stat"><strong>Web</strong><span>Software Platforms</span></div>
+        <div class="stat"><strong>End-to-End</strong><span>Engineering</span></div>
+      </div>
+    </div>
+
+    <section id="work">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Selected Work</div>
+            <h2>What we've built.</h2>
+          </div>
+          <p>
+            A selection of websites, platforms and software products delivered
+            across professional, business and technology-focused projects.
+          </p>
+        </div>
+
+        <div class="projects">
+          <article class="project">
+            <div class="project-number">01 / ORGANIZATION</div>
+            <h3>Biotechnology Society of Nigeria</h3>
+            <p>Professional organization website with membership, events, news, publications and conference content.</p>
+            <a class="project-link" href="https://biotechnologysociety.ng" target="_blank" rel="noopener">Visit biotechnologysociety.ng ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">02 / ENGINEERING</div>
+            <h3>NIHTE</h3>
+            <p>Digital platform for the Nigerian Institution of Highway and Transportation Engineers, including professional information, membership and engineering content.</p>
+            <a class="project-link" href="https://nihte.org" target="_blank" rel="noopener">Visit nihte.org ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">03 / TECHNOLOGY</div>
+            <h3>Trainsfer</h3>
+            <p>Technology project focused on digital transactions and modern software infrastructure.</p>
+            <a class="project-link" href="https://trainsfer.org" target="_blank" rel="noopener">Visit trainsfer.org ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">04 / DIGITAL PLATFORM</div>
+            <h3>Flowza</h3>
+            <p>Modern digital product and platform experience designed for streamlined workflows.</p>
+            <a class="project-link" href="https://flowzahq.com" target="_blank" rel="noopener">Visit flowzahq.com ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">05 / SAAS</div>
+            <h3>Lumora</h3>
+            <p>Email SaaS platform engineered around sending, delivery and management workflows.</p>
+            <a class="project-link" href="https://uselumora.io" target="_blank" rel="noopener">Visit uselumora.io ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">06 / E-COMMERCE</div>
+            <h3>Appfinity Store</h3>
+            <p>Digital storefront experience for presenting and selling products online.</p>
+            <a class="project-link" href="https://appfinitystore.com" target="_blank" rel="noopener">Visit appfinitystore.com ↗</a>
+          </article>
+
+          <article class="project">
+            <div class="project-number">07 / BUSINESS PLATFORM</div>
+            <h3>Bullnet EPABS</h3>
+            <p>Business-focused digital platform built to support online information and service workflows.</p>
+            <a class="project-link" href="https://bullnetepabs.com" target="_blank" rel="noopener">Visit bullnetepabs.com ↗</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Capabilities</div>
+            <h2>More than just pages.</h2>
+          </div>
+          <p>
+            We approach projects as software systems — from architecture and
+            interfaces to APIs, databases, integrations and deployment.
+          </p>
+        </div>
+
+        <div class="services">
+          <div class="service">
+            <div class="service-icon">⌘</div>
+            <h3>Software Architecture</h3>
+            <p>Designing maintainable systems with clear boundaries and room to scale.</p>
+          </div>
+
+          <div class="service">
+            <div class="service-icon">◈</div>
+            <h3>Web Applications</h3>
+            <p>Responsive, production-ready interfaces and full-stack applications.</p>
+          </div>
+
+          <div class="service">
+            <div class="service-icon">↔</div>
+            <h3>APIs & Integrations</h3>
+            <p>Connecting applications, payment services, external APIs and business workflows.</p>
+          </div>
+
+          <div class="service">
+            <div class="service-icon">▲</div>
+            <h3>Deployment & Scale</h3>
+            <p>Production setup, performance considerations and dependable application delivery.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact">
+          <div>
+            <div class="eyebrow">Have a project?</div>
+            <h2>Let's build something great.</h2>
+            <p>Tell us what you're trying to build and let's turn the idea into a working system.</p>
+          </div>
+
+          <div class="contact-details">
+            <a href="tel:+2347081607729">+234 708 160 7729</a>
+            <a href="mailto:pisquaretechsolutions@gmail.com">pisquaretechsolutions@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Pi Square Tech Solutions.</span>
+      <span>Professional. Reliable. Results-Driven.</span>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
