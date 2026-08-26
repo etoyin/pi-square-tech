@@ -118,7 +118,7 @@
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       color: var(--accent-2);
       font-size: 13px;
       font-weight: 800;
@@ -132,6 +132,53 @@
       width: 30px;
       height: 2px;
       background: var(--accent);
+    }
+
+    .hero-brand-mark {
+      color: var(--accent);
+      font-weight: 900;
+      letter-spacing: -.02em;
+      font-size: 16px;
+    }
+
+    .founder-line {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin: 0 0 28px;
+      padding: 18px 22px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+    }
+
+    .founder-dot {
+      margin-top: 10px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255,75,22,.15);
+      flex-shrink: 0;
+    }
+
+    .founder-name {
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -.02em;
+    }
+
+    .founder-title {
+      font-size: 13.5px;
+      color: var(--accent-2);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .founder-role {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     h1 {
@@ -188,10 +235,19 @@
       color: var(--accent);
       font-weight: 900;
       line-height: .9;
-      margin-bottom: 28px;
+      margin-bottom: 16px;
     }
 
-    .hero-card h3 { font-size: 24px; margin-bottom: 10px; }
+    .hero-card-brand {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .hero-card h3 { font-size: 22px; margin-bottom: 10px; letter-spacing: -.02em; }
     .hero-card p { margin: 0; font-size: 15px; }
 
     .stats {
@@ -307,6 +363,80 @@
     .service h3 { font-size: 17px; margin-bottom: 7px; }
     .service p { color: var(--muted); font-size: 13px; }
 
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+
+    .about-card {
+      padding: 36px 32px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.012));
+    }
+
+    .about-accent {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: .9;
+      margin-bottom: 20px;
+      letter-spacing: -.05em;
+    }
+
+    .about-card h3 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin-bottom: 14px;
+    }
+
+    .about-lede {
+      color: var(--text);
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .about-card p {
+      color: var(--muted);
+      font-size: 15px;
+      margin-top: 14px;
+    }
+
+    .about-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .about-list li {
+      color: var(--muted);
+      font-size: 14.5px;
+      padding-left: 22px;
+      position: relative;
+      line-height: 1.55;
+    }
+
+    .about-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    .about-list li strong {
+      color: var(--text);
+      font-weight: 700;
+    }
+
     .contact {
       padding: 50px;
       border-radius: 25px;
@@ -354,6 +484,7 @@
       .hero-grid { grid-template-columns: 1fr; }
       .services { grid-template-columns: repeat(2, 1fr); }
       .projects { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
       .contact { flex-direction: column; align-items: flex-start; }
     }
 
@@ -368,6 +499,8 @@
       .section-heading p { margin-top: 16px; }
       .contact { padding: 30px; }
       .footer-inner { flex-direction: column; }
+      .about-card { padding: 28px 24px; }
+      .founder-line { padding: 16px 18px; }
     }
   </style>
 </head>
@@ -377,10 +510,11 @@
     <div class="container nav-inner">
       <a class="brand" href="#">
         <img src="assets/logo.png" alt="Pi Square Tech Solutions logo" />
-        <!-- <span>Pi Square Tech Solutions</span> -->
+        <!-- <span>PI SQUARE TECH SOLUTIONS</span> -->
       </a>
 
       <div class="nav-links">
+        <a href="#about">About</a>
         <a href="#work">Work</a>
         <a href="#services">Services</a>
         <a class="nav-cta" href="#contact">Let's Talk</a>
@@ -392,13 +526,25 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Software Engineering & Architecture</div>
-          <h1>We <span>build</span> software that works in the real world.</h1>
+          <div class="eyebrow">
+            <span class="hero-brand-mark">π²</span>
+            <span>PI SQUARE TECH SOLUTIONS</span>
+          </div>
+          <h1>Software Engineering.<br />Architecture.<br /><span>Digital Products.</span></h1>
           <p>
-            Pi Square Tech Solutions designs and engineers modern digital products,
-            business platforms and software systems with a focus on clean architecture,
-            reliability, scalability and practical results.
+            I design and engineer reliable software systems for businesses,
+            organizations and startups — from SaaS platforms and APIs to
+            full-stack applications and business systems.
           </p>
+
+          <div class="founder-line">
+            <span class="founder-dot"></span>
+            <div>
+              <div class="founder-name">Adesina Oluwatoyin Emmanuel</div>
+              <div class="founder-title">Founder &amp; Lead Software Engineer</div>
+              <div class="founder-role">Software Engineer &bull; Full-Stack Developer &bull; Systems Architect</div>
+            </div>
+          </div>
 
           <div class="actions">
             <a class="btn btn-primary" href="#work">View Our Work</a>
@@ -408,10 +554,12 @@
 
         <div class="hero-card">
           <div class="symbol">π²</div>
-          <h3>Build. Scale. Automate.</h3>
+          <div class="hero-card-brand">Pi Square Tech Solutions</div>
+          <h3>Founded &amp; Led by Adesina Oluwatoyin Emmanuel</h3>
           <p>
-            From websites and business platforms to SaaS products, APIs,
-            integrations and custom software systems.
+            An independent software engineering studio building modern digital
+            products, business platforms and software systems with clean
+            architecture, reliability and scalability at the core.
           </p>
         </div>
       </div>
@@ -491,6 +639,50 @@
       </div>
     </section>
 
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">About</div>
+            <h2>About the studio.</h2>
+          </div>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-card">
+            <div class="about-accent">π²</div>
+            <h3>Pi Square Tech Solutions</h3>
+            <p class="about-lede">
+              An independent software engineering studio founded and currently
+              led by Adesina Oluwatoyin Emmanuel.
+            </p>
+            <p>
+              I work directly with businesses, organizations and startups to
+              design and engineer reliable software systems — from SaaS
+              platforms, payment systems and APIs to full-stack applications,
+              automation and software architecture.
+            </p>
+            <p>
+              Every project is approached as a system: clean architecture,
+              maintainable codebases, practical delivery and room to scale as
+              you grow.
+            </p>
+          </div>
+
+          <div class="about-card">
+            <h3>What I deliver</h3>
+            <ul class="about-list">
+              <li><strong>Software Architecture</strong> — systems designed with clear boundaries and room to grow.</li>
+              <li><strong>Full-Stack Applications</strong> — production-ready interfaces, APIs and databases.</li>
+              <li><strong>SaaS &amp; Business Platforms</strong> — products engineered for reliability and scale.</li>
+              <li><strong>Integrations &amp; Automation</strong> — connecting systems, payments and workflows.</li>
+              <li><strong>End-to-End Engineering</strong> — from design and architecture to deployment.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="services">
       <div class="container">
         <div class="section-heading">
@@ -552,8 +744,8 @@
 
   <footer>
     <div class="container footer-inner">
-      <span>© <span id="year"></span> Pi Square Tech Solutions.</span>
-      <span>Professional. Reliable. Results-Driven.</span>
+      <span>© <span id="year"></span> Pi Square Tech Solutions — an independent studio founded by Adesina Oluwatoyin Emmanuel.</span>
+      <span>Engineering. Architecture. Results.</span>
     </div>
   </footer>
 
