@@ -6,6 +6,12 @@
   <meta name="description" content="Pi Square Tech Solutions — software engineering, architecture and digital solutions." />
   <title>Pi Square Tech Solutions | Software Engineering</title>
 
+  <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="shortcut icon" href="assets/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="assets/site.webmanifest" />
+
   <style>
     :root {
       --bg: #070b12;
@@ -437,6 +443,37 @@
       font-weight: 700;
     }
 
+    .cert-card {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,.012));
+    }
+
+    .cert-badge {
+      flex: 0 0 auto;
+      padding: 12px;
+      border-radius: 14px;
+      background: #fff;
+      line-height: 0;
+    }
+
+    .cert-copy h3 {
+      font-size: 22px;
+      letter-spacing: -.03em;
+      margin-bottom: 12px;
+    }
+
+    .cert-copy p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 520px;
+    }
+
     .contact {
       padding: 50px;
       border-radius: 25px;
@@ -500,6 +537,7 @@
       .contact { padding: 30px; }
       .footer-inner { flex-direction: column; }
       .about-card { padding: 28px 24px; }
+      .cert-card { flex-direction: column; align-items: flex-start; padding: 24px; }
       .founder-line { padding: 16px 18px; }
     }
   </style>
@@ -724,6 +762,29 @@
       </div>
     </section>
 
+    <section id="certifications">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="eyebrow">Certifications</div>
+            <h2>Certified &amp; verified.</h2>
+          </div>
+          <p>Credentials earned and independently verifiable through Credly.</p>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">
+            <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="d7cdfb07-eb6c-4943-a786-b678cad00e51" data-share-badge-host="https://www.credly.com"></div>
+          </div>
+
+          <div class="cert-copy">
+            <h3>Claude Certified</h3>
+            <p>A professional certification in Claude, issued by Anthropic with a verifiable credential hosted on Credly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact">
       <div class="container">
         <div class="contact">
@@ -748,6 +809,8 @@
       <span>Engineering. Architecture. Results.</span>
     </div>
   </footer>
+
+  <script type="text/javascript" async src="//cdn.credly.com/assets/utilities/embed.js"></script>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
